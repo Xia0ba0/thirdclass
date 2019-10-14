@@ -72,8 +72,6 @@
                     <i class="cubeic-arrow"></i>
                   </div>
                 </div>
-                <div class="menu">
-                </div>
               </div>
             </cube-scroll>
           </cube-slide-item>
