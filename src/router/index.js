@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import activity from '../components/activity'
-import activityDetail from '../components/activityDetail'
+import appMain from '../pages/appMain'
+import activityDetail from '../pages/activityDetail'
 
 Vue.use(Router)
 
@@ -9,8 +9,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'activity',
-      component: activity,
+      name: 'appMain',
+      component: appMain,
       meta: {
         keepAlive: true,
         level: 0

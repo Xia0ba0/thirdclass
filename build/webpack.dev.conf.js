@@ -35,7 +35,9 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     quiet: true, // necessary for FriendlyErrorsPlugin
     watchOptions: {
       poll: config.dev.poll,
-    }
+    },
+
+    disableHostCheck: true // disable host check for nginx in docker
   },
   plugins: [
     new webpack.DefinePlugin({

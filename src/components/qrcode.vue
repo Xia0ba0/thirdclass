@@ -9,6 +9,7 @@
   import QRCode from 'qrcodejs2'
 
   export default {
+    name: 'qrcode',
     props: ['text', 'remind'],
     data () {
       return {
@@ -38,7 +39,7 @@
     }
   }
 </script>
-<style lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus" rel="stylesheet/stylus" scoped>
   .qrcode-wrapper
     text-align: center
     width: 300px
