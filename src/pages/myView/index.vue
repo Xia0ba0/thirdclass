@@ -11,7 +11,8 @@
     <div class="menus">
       <div class="menu">
         <div class="leftText">
-          <i class="cubeic-calendar">我的活动</i>
+          <i class="cubeic-calendar"></i>
+          <span>我的活动</span>
         </div>
         <div class="rightIcon">
           <i class="cubeic-arrow"></i>
@@ -64,12 +65,9 @@ export default {
     background-color white
     border-radius 52px
     box-shadow 0 0 2px rgba(0, 0, 0, 0.4)
+    overflow-y hidden
 
     img
-      line-height 0
-      display inline-block
-      border-radius 50%
-      transition linear 0.25s
       width: 100%
       height auto
 
@@ -85,19 +83,23 @@ export default {
   background-color white
 
   .menu
-    height 40px
+    height 56px
     width 100%
+    line-height 56px
     font-size 16px
-    padding-top 20px
-    border-radius 6px
-    border-bottom 1px rgba(0, 0, 0, 0.4) solid
+    border-bottom 1px solid
     padding-left 5%
     padding-right 5%
 
     .leftText
       display inline-block
+      i
+        margin-right 10px
 
     .rightIcon
       display inline-block
-      padding-left 68%
+      color gray
+      font-size 10px
+      padding-left 60%
+
 </style>
