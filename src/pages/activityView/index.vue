@@ -53,15 +53,24 @@ export default {
     }
   },
   created () {
-    this.$ajax.get('user/app_login_test')
-      .then(res => {
-        getActivities().then(res => {
-          console.log(res)
-          this.activityData = res
-        }).catch(err => {
-          console.log(err)
+    // this is processed by webpack
+    if (process.env.NODE_ENV === 'development') {
+      alert('login from backdoor')
+      this.$ajax.get('user/app_login_test')
+        .then(res => {
+          getActivities().then(res => {
+            this.activityData = res
+          }).catch(err => {
+            console.log(err)
+          })
         })
+    } else {
+      getActivities().then(res => {
+        this.activityData = res
+      }).catch(err => {
+        alert(err.message)
       })
+    }
   },
   methods: {
     goDetail (item) {
