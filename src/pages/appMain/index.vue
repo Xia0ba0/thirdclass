@@ -15,6 +15,7 @@
           :auto-play="autoPlay"
           :show-dots="showDots"
           :options="slideOptions"
+          :threshold="threshold"
           @scroll="scroll"
           @change="changePage"
         >
@@ -33,7 +34,7 @@
           <!-- 我的 -->
           <cube-slide-item>
             <cube-scroll :options="scrollOptions">
-              <my-view :show="myViewShow" />
+              <my-view :show="myViewShow" :user-data="userData" />
             </cube-scroll>
           </cube-slide-item>
         </cube-slide>
@@ -70,6 +71,7 @@ export default {
       loop: false,
       autoPlay: false,
       showDots: false,
+      threshold: 0.2,
       slideOptions: {
         listenScroll: true,
         probeType: 3,
@@ -83,7 +85,12 @@ export default {
       // Pages options
       activityViewShow: true,
       qrcodeViewShow: false,
-      myViewShow: false
+      myViewShow: false,
+      // User data
+      userData: {
+        avatar: '',
+        userName: ''
+      }
     }
   },
 
@@ -118,6 +125,11 @@ export default {
       index = findIndex(this.tabLabels, item => item.label === this.selectedLabel)
       return index
     }
+  },
+  created () {
+    this.$ajax.get('/user/getMyUserInfo').then(res => {
+      this.userData = res.data
+    })
   },
   components: {
     page,

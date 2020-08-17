@@ -2,10 +2,10 @@
   <div class="container">
     <div class="me">
       <div class="myImage">
-        <img src="https://pic2.zhimg.com/v2-50162912937dbe8f14caa7bb67098be2_r.jpg?source=1940ef5c"/>
+        <img :src="userData.avatar"/>
       </div>
       <div class="name">
-        测试
+        {{ userData.userName }}
       </div>
     </div>
     <div class="menus">
@@ -28,6 +28,10 @@ export default {
   props: {
     show: {
       type: Boolean,
+      required: true
+    },
+    userData: {
+      type: Object,
       required: true
     }
   },

@@ -162,6 +162,7 @@ export default {
             border: 1px solid #1592e6
             border-radius: 18px
             text-align: center
+            line-height: 20px
             display: inline-block
 
           .right
