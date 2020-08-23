@@ -25,8 +25,7 @@
 </template>
 
 <script>
-import getActivities from '../../data/activity'
-
+import {getActivities} from '../../data/activity'
 export default {
   name: 'activityView',
   props: {
@@ -96,7 +95,6 @@ export default {
     border-radius: 15px
     box-shadow: 0 1px 6px #ccc
     font-size: 14px
-    white-space: normal
 
     .activiyTitle
       font-size: 16px

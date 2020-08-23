@@ -4,6 +4,8 @@ function Activity (Obj) {
   this.id = Obj.actId
 
   this.title = Obj.title
+  this.attendLimit = Obj.attendLimit
+  this.attendCount = Obj.attendCount
 
   this.type = Obj.cateName
   this.location = Obj.location
@@ -13,14 +15,19 @@ function Activity (Obj) {
   this.reg_end_time = Obj.signupEndTime
   this.needSignIn = Obj.needCheckin
 
-  if (this.reg_start_time === '1970-01-01 08:00:00') {
+  if (this.reg_start_time === '1970-01-01 00:00:00') {
     this.needRegister = false
   } else {
     this.needRegister = true
   }
 
+  if (Obj.descPicture) {
+    this.images = Obj.descPicture.map(url => 'http://sclass.cafa.edu.cn' + url)
+  } else {
+    this.images = Obj.descPicture
+  }
+
   this.organization = Obj.organizerType
-  this.image = Obj.picture
 
   this.text = ''
 }
@@ -30,9 +37,6 @@ Activity.prototype.getDetails = function () {
     actId: this.id
   }).then(res => {
     this.text = res.data.activity.description
-    if (res.data.activity.descPicture) {
-      this.image = res.data.activity.descPicture[0]
-    }
   })
 }
 
@@ -60,12 +64,45 @@ Activity.prototype.unRegister = function () {
   })
 }
 
-export default function getActivities () {
+Activity.prototype.checkIfRegistered = function () {
+  return axios.get(`participation/querySignedUp?actId=${this.id}`).then(res => {
+    if (res.data.data) {
+      return true
+    } else {
+      return false
+    }
+  })
+}
+
+export function getActivities () {
   let activities = []
   return axios.post('activity/list', {
     offset: 0,
-    limit: 10,
+    limit: 100,
     state: '已发布'
+  }).then(res => {
+    for (let data of res.data.page.activities) {
+      activities.push(new Activity(data))
+    }
+    return activities
+  })
+}
+export function getMyActivities () {
+  let activities = []
+  return axios.post('activity/mysignuplist', {
+    state: '已发布'
+  }).then(res => {
+    for (let data of res.data.page.activities) {
+      activities.push(new Activity(data))
+    }
+    return activities
+  })
+}
+
+export function getMyEndActivities () {
+  let activities = []
+  return axios.post('activity/mysignuplist', {
+    state: '已结束'
   }).then(res => {
     for (let data of res.data.page.activities) {
       activities.push(new Activity(data))
