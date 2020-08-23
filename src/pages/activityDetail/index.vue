@@ -127,9 +127,11 @@ export default {
         })
     },
     showPics () {
-      this.$createImagePreview({
-        imgs: this.images
-      }).show()
+      if (this.$route.params.activity.images) {
+        this.$createImagePreview({
+          imgs: this.images
+        }).show()
+      }
     },
     showToast (type, text) {
       this.$createToast({

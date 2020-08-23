@@ -7,9 +7,14 @@ import Vue from 'vue'
 import {
   /* eslint-disable no-unused-vars */
   Style,
+  // basic
   TabBar,
-  TabPanels,
+  // form
+  // popup
+  Toast,
+  Dialog,
   ImagePreview,
+  // scroll
   Scroll,
   Slide
 } from 'cube-ui'
@@ -18,7 +23,8 @@ import router from './router'
 import './net'
 
 Vue.use(TabBar)
-Vue.use(TabPanels)
+Vue.use(Toast)
+Vue.use(Dialog)
 Vue.use(ImagePreview)
 Vue.use(Scroll)
 Vue.use(Slide)
