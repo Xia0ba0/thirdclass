@@ -9,6 +9,7 @@ import {
   Style,
   // basic
   TabBar,
+  TabPanels,
   // form
   // popup
   Toast,
@@ -23,6 +24,7 @@ import router from './router'
 import './net'
 
 Vue.use(TabBar)
+Vue.use(TabPanels)
 Vue.use(Toast)
 Vue.use(Dialog)
 Vue.use(ImagePreview)

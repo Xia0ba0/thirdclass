@@ -20,12 +20,15 @@
           <span class="activityOrg">{{ item.organization }}</span>
         </div>
       </div>
+      <progress-bar v-if="item.needRegister" :val="(item.attendCount/item.attendLimit) * 100" text="报名进度"></progress-bar>
     </li>
   </ul>
 </template>
 
 <script>
 import {getActivities} from '../../data/activity'
+import ProgressBar from 'vue-simple-progress'
+
 export default {
   name: 'activityView',
   props: {
@@ -78,6 +81,9 @@ export default {
         params: {activity: item}
       }).catch(err => err)
     }
+  },
+  components: {
+    ProgressBar
   }
 }
 </script>

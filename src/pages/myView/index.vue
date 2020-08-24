@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="menus">
-      <div class="menu">
+      <div class="menu" @click="goMyactivity">
         <div class="leftText">
           <i class="cubeic-calendar"></i>
           <span>我的活动</span>
@@ -46,6 +46,11 @@ export default {
       } else {
       }
     }
+  },
+  methods: {
+    goMyactivity () {
+      this.$router.push('/myActivity').catch(err => err)
+    }
   }
 }
 </script>
@@ -55,16 +60,15 @@ export default {
   padding-right 20px
   height 150px
   width 100%
-  background-color white
   display flex
   flex-direction column
   align-items center
   justify-content center
 
-  border-
+
   .myImage
-    height 52px
-    width 52px
+    height 60px
+    width 60px
     padding 2px
     background-color white
     border-radius 52px
@@ -76,27 +80,24 @@ export default {
       height auto
 
   .name
-    margin-top 12px
+    margin-top 20px
     color gray
-    font-size 10px
+    font-size 12px
 
 .menus
   margin-top 30px
   height 350px
   width 100%
-  background-color white
 
   .menu
     height 56px
     width 100%
     line-height 56px
     font-size 16px
-    border-bottom 1px solid
-    padding-left 5%
-    padding-right 5%
 
     .leftText
       display inline-block
+      margin-left 4%
       i
         margin-right 10px
 
@@ -104,6 +105,7 @@ export default {
       display inline-block
       color gray
       font-size 10px
-      padding-left 60%
+      float right
+      margin-right 4%
 
 </style>

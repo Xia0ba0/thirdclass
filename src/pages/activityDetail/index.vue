@@ -13,19 +13,27 @@
             <div class="heads">
               <div class="head">
                 <i class="cubeic-tag"></i>
-                {{ org }}
+                主办机构： {{ org }}
               </div>
               <div class="head">
                 <i class="cubeic-notification"></i>
-                活动时间: {{ start_time }} ~ {{ end_time }}
+                活动时间： {{ start_time }} ~ {{ end_time }}
               </div>
-              <div v-show="needRegister" class="head">
+              <div v-if="needRegister" class="head">
                 <i class="cubeic-hot"></i>
-                报名时间: {{ reg_start_time }} ~ {{ reg_end_time }}
+                报名时间： {{ reg_start_time }} ~ {{ reg_end_time }}
+              </div>
+              <div v-if="needRegister" class="head">
+                <i class="cubeic-setting"></i>
+                限定人数： {{attendLimit}}人
+              </div>
+              <div v-if="needRegister" class="head">
+                <i class="cubeic-square-right"></i>
+                已报人数： {{attendCount}}人
               </div>
               <div class="head">
                 <i class="cubeic-location"></i>
-                {{ location }}
+                活动位置： {{ location }}
               </div>
               <div class="head">
                 <div class="tags">
@@ -94,6 +102,8 @@ export default {
       end_time: this.$route.params.activity.end_time,
       reg_start_time: this.$route.params.activity.reg_start_time,
       reg_end_time: this.$route.params.activity.reg_end_time,
+      attendLimit: this.$route.params.activity.attendLimit,
+      attendCount: this.$route.params.activity.attendCount,
       location: this.$route.params.activity.location,
       needRegister: this.$route.params.activity.needRegister,
       needSignIn: this.$route.params.activity.needSignIn,
