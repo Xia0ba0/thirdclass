@@ -59,7 +59,7 @@ export default {
     if (process.env.NODE_ENV === 'development') {
       alert('login from backdoor')
       this.$ajax.get('user/app_login_test')
-        .then(res => {
+        .then(() => {
           getActivities().then(res => {
             this.activityData = res
           }).catch(err => {

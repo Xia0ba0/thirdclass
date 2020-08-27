@@ -47,6 +47,7 @@ Activity.prototype.register = function () {
     if (res.data.status !== 200) {
       throw res.data
     } else {
+      this.attendCount += 1
       return true
     }
   })
@@ -59,6 +60,7 @@ Activity.prototype.unRegister = function () {
     if (res.data.status !== 200) {
       throw res.data
     } else {
+      this.attendCount -= 1
       return true
     }
   })

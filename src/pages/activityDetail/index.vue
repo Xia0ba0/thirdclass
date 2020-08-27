@@ -1,5 +1,5 @@
 <template>
-  <page class="tab-composite-view" showtitle="show" title="活动详情" goback="true">
+  <page showtitle="show" title="活动详情" goback="true">
     <div slot="content">
       <div class="detailContainer">
         <div class="topImage" ref="image">
@@ -25,11 +25,11 @@
               </div>
               <div v-if="needRegister" class="head">
                 <i class="cubeic-setting"></i>
-                限定人数： {{attendLimit}}人
+                限定人数： {{ attendLimit }}人
               </div>
               <div v-if="needRegister" class="head">
                 <i class="cubeic-square-right"></i>
-                已报人数： {{attendCount}}人
+                已报人数： {{ attendCount }}人
               </div>
               <div class="head">
                 <i class="cubeic-location"></i>
@@ -52,6 +52,8 @@
             {{ detail }}
           </div>
         </div>
+      </div>
+      <div class="buttonContainer">
         <div class="bottomButton reg" v-if="showButton && needRegister && !ifRegistered" @click="register">
           <div class="btnText">
             <i class="cubeic-like">报名</i>
@@ -119,6 +121,7 @@ export default {
       this.$route.params.activity.register().then(
         () => {
           this.ifRegistered = true
+          this.attendCount += 1
           this.regSuccess()
         }).catch(
         (err) => {
@@ -130,6 +133,7 @@ export default {
       this.$route.params.activity.unRegister().then(
         () => {
           this.ifRegistered = false
+          this.attendCount -= 1
           this.unRegSuccess()
         }).catch(
         err => {
@@ -173,6 +177,7 @@ export default {
   overflow-y auto
   top 44px
   background-color: white;
+  z-index 11
 
   .topImage
     z-index -1
@@ -227,32 +232,36 @@ export default {
       margin-top 18px
       color black
       line-height 1.5
+      word-wrap break-word
 
-
-.bottomButton
+.buttonContainer
   width 100%
   height 6%
-  color white
   position fixed
   bottom 0
-  display flex
-  align-items center
-  justify-content center
+  z-index 11
+
+  .bottomButton
+    color white
+    display flex
+    align-items center
+    justify-content center
+    height 100%
 
 
-  .btnText
-    font-size 150%
-    font-weight bolder
+    .btnText
+      font-size 150%
+      font-weight bolder
 
-.reg
-  background-color dodgerblue
-  box-shadow 5px 5px 5px 5px dodgerblue
+  .reg
+    background-color dodgerblue
+    box-shadow 5px 5px 5px 5px dodgerblue
 
-.unReg
-  background-color gray
-  box-shadow 5px 5px 5px 5px gray
+  .unReg
+    background-color gray
+    box-shadow 5px 5px 5px 5px gray
 
-.noReg
-  background-color darkseagreen
-  box-shadow 5px 5px 5px 5px darkseagreen
+  .noReg
+    background-color darkseagreen
+    box-shadow 5px 5px 5px 5px darkseagreen
 </style>

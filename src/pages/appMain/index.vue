@@ -127,9 +127,17 @@ export default {
     }
   },
   created () {
-    this.$ajax.get('/user/getMyUserInfo').then(res => {
-      this.userData = res.data
-    })
+    if (process.env.NODE_ENV === 'development') {
+      this.$ajax.get('/user/getMyUserInfo').then(res => {
+        this.userData = res.data
+      })
+    } else {
+      this.$ajax.get('/user/app_login_test').then(() => {
+        this.$ajax.get('/user/getMyUserInfo').then(res => {
+          this.userData = res.data
+        })
+      })
+    }
   },
   components: {
     page,
