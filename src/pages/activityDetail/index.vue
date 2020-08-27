@@ -232,7 +232,7 @@ export default {
       margin-top 18px
       color black
       line-height 1.5
-      word-wrap break-word
+      word-break break-all
 
 .buttonContainer
   width 100%
