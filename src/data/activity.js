@@ -54,6 +54,12 @@ Activity.prototype.register = function () {
 }
 
 Activity.prototype.unRegister = function () {
+  if (new Date(this.end_time).getTime() < new Date().getTime()) {
+    return new Promise((resolve, reject) => {
+      // eslint-disable-next-line prefer-promise-reject-errors
+      reject({msg: '活动已经结束'})
+    })
+  }
   return axios.post('participation/cancel', {
     actId: this.id
   }).then(res => {
